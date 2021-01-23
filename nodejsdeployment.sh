@@ -30,13 +30,13 @@ if [ "${2} == ci" ]; then
 	cp buildspec.yml "${file_path}"
 fi
 
-#loops through array of directories, moves them to old if they exist and then copies them to the file path
+#loops through array of directories, moves them to old if they exist and then creates them
 for directory in "${directorynames[@]}"
 do
 	if [ -d "${file_path}"/"${directory}" ]; then
 		mv "${file_path}"/"${directory}" "${file_path}"/old
 	fi
-	cp -r "${directory}" "${file_path}"
+	mkdir "${file_path}"/"${directory}"
 done
 
 #loops through array of file names, moves them to old if they exist and then copies them to the file path
