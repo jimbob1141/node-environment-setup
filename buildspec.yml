@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      #install node
+      - curl -sL https://deb.nodesource.com/setup_14.x | bash -
+      - apt install -y nodejs
+  pre_build:
+    commands:
+      #installs dependencies
+      - npm install
+  build:
+    commands:
+      #runs jest
+      - npm test
+      - npm run build
+
+artifacts:
+  files:
+    - "**/*"
+  discard-paths: no
+  base-directory: dist
